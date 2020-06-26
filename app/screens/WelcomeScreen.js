@@ -13,7 +13,7 @@ import AppButton from "../components/AppButton";
 function WelcomeScreen(props) {
   return (
     <ImageBackground
-    blurRadius={8}
+      blurRadius={8}
       source={require("../assets/background.jpg")}
       style={styles.background}
     >
@@ -23,8 +23,11 @@ function WelcomeScreen(props) {
       </View>
       <View style={styles.buttonsContainer}>
         <AppButton title="login" onPress={() => console.log("clicked")} />
-        <AppButton title="register" color="secondary" onPress={() => console.log("clicked")} />
-
+        <AppButton
+          title="register"
+          color="secondary"
+          onPress={() => console.log("clicked")}
+        />
       </View>
     </ImageBackground>
   );
@@ -47,10 +50,10 @@ const styles = StyleSheet.create({
   slogan: {
     fontSize: 22,
     marginTop: 25,
-    fontWeight:"bold"
+    fontWeight: "bold",
   },
   buttonsContainer: {
-    padding:20,
+    padding: 20,
     width: "100%",
   },
 });

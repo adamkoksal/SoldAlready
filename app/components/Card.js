@@ -18,8 +18,9 @@ const styles = StyleSheet.create({
   card: {
     borderRadius: 15,
     backgroundColor: colors.white,
-    marginBottom: 20,
     overflow: "hidden",
+    margin: 20,
+    marginBottom: 0
   },
   image: {
     width: "100%",
