@@ -8,8 +8,12 @@ function Card({ title, subTitle, image }) {
     <View style={styles.card}>
       <Image style={styles.image} source={image}></Image>
       <View style={styles.detailContainer}>
-        <AppText style={styles.title}>{title}</AppText>
-        <AppText style={styles.subTitle}>{subTitle}</AppText>
+        <AppText style={styles.title} numberOfLines={1}>
+          {title}
+        </AppText>
+        <AppText style={styles.subTitle} numberOfLines={1}>
+          {subTitle}
+        </AppText>
       </View>
     </View>
   );
@@ -20,7 +24,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     overflow: "hidden",
     margin: 20,
-    marginBottom: 0
+    marginBottom: 0,
   },
   image: {
     width: "100%",

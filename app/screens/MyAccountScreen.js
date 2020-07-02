@@ -29,7 +29,7 @@ function MyAccountScreen(props) {
       <View style={styles.container}>
         <ListItem
           image={require("../assets/me.jpg")}
-          title="Abdurrahman Koksal"
+          title="Adam Koksal"
           // ImageComponent={
           //   <Icon backgroundColor={colors.primary} name="email" />
           // }

@@ -14,7 +14,7 @@ function ListingDetailsScreen(props) {
         <View style={{marginVertical: 20}}>
           <ListItem
             image={require("../assets/me.jpg")}
-            title="Abdurrahman Koksal"
+            title="Adam Koksal"
             subTitle="12 Listings"
           ></ListItem>
         </View>

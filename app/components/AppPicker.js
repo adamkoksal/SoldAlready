@@ -15,13 +15,23 @@ import PickerItem from "./PickerItem";
 import Screen from "./Screen";
 import ListItemSeparator from "./ListItemSeparator";
 
-function AppPicker({ icon, placeholder, items, selectedItem, onSelectItem }) {
+function AppPicker({
+  PickerItemComponent = PickerItem,
+  icon,
+  placeholder,
+  items,
+  numColumns = 1,
+  selectedItem,
+  onSelectItem,
+  centerCategories = true,
+  width = "100%",
+}) {
   const [modelVisible, setModelVisible] = useState(false);
 
   return (
     <>
       <TouchableWithoutFeedback onPress={() => setModelVisible(true)}>
-        <View style={styles.container}>
+        <View style={[styles.container, { width }]}>
           {icon && (
             <MaterialCommunityIcons
               name={icon}
@@ -29,9 +39,13 @@ function AppPicker({ icon, placeholder, items, selectedItem, onSelectItem }) {
               color={colors.medium}
             />
           )}
-          <AppText style={styles.text}>
-            {selectedItem ? selectedItem.label : placeholder}
-          </AppText>
+
+          {selectedItem ? (
+            <AppText style={styles.text}>{selectedItem.label}</AppText>
+          ) : (
+            <AppText style={styles.placeholder}>{placeholder}</AppText>
+          )}
+
           <MaterialCommunityIcons
             name="chevron-down"
             size={23}
@@ -48,17 +62,18 @@ function AppPicker({ icon, placeholder, items, selectedItem, onSelectItem }) {
           </TouchableWithoutFeedback>
           <FlatList
             data={items}
+            alignItems={centerCategories}
             keyExtractor={(item) => item.value.toString()}
+            numColumns={numColumns}
             renderItem={({ item }) => (
-              <PickerItem
-                label={item.label}
+              <PickerItemComponent
+                item={item}
                 onPress={() => {
                   setModelVisible(false);
                   onSelectItem(item);
                 }}
               />
             )}
-            ItemSeparatorComponent={ListItemSeparator}
           />
         </Screen>
       </Modal>
@@ -76,6 +91,11 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   text: {
+    marginLeft: 10,
+    flex: 1,
+  },
+  placeholder: {
+    color: colors.medium,
     marginLeft: 10,
     flex: 1,
   },

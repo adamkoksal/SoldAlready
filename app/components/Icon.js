@@ -24,7 +24,6 @@ const styles = StyleSheet.create({
   logoContainer: {
     justifyContent: "center",
     alignItems: "center",
-    marginRight: 15,
   },
 });
 

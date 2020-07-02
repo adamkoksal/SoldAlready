@@ -8,14 +8,14 @@ import ListItemDeleteAction from "../components/ListItemDeleteAction";
 const initialMessages = [
   {
     id: 1,
-    title: "T1",
-    description: "D1",
+    title: "Adam Koksal",
+    description: "Is this item still available?",
     image: require("../assets/me.jpg"),
   },
   {
     id: 2,
-    title: "T2",
-    description: "D2",
+    title: "Adam Koksal",
+    description: "Will you take 200 for this?",
     image: require("../assets/me.jpg"),
   },
 ];
@@ -35,6 +35,7 @@ function MessagesScreen(props) {
         keyExtractor={(message) => message.id.toString()}
         renderItem={({ item }) => (
           <ListItem
+            showChevrons
             title={item.title}
             subTitle={item.description}
             image={item.image}
@@ -50,20 +51,20 @@ function MessagesScreen(props) {
           setMessages([
             {
               id: 1,
-              title: "T1",
-              description: "D1",
+              title: "Adam Koksal",
+              description: "Is this item still available?",
               image: require("../assets/me.jpg"),
             },
             {
               id: 2,
-              title: "T2",
-              description: "D2",
+              title: "Adam Koksal",
+              description: "Will you take 200 for this?",
               image: require("../assets/me.jpg"),
             },
             {
               id: 3,
-              title: "T3",
-              description: "D3",
+              title: "Adam Koksal",
+              description: "See you tomorrow!",
               image: require("../assets/me.jpg"),
             },
           ]);
