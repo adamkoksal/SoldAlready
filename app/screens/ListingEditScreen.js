@@ -5,15 +5,18 @@ import * as Yup from "yup";
 
 import AppFormField from "../components/AppFormField";
 import AppFormPicker from "../components/AppFormPicker";
+import CategoryPickerItem from "../components/CategoryPickerItem";
+import FormImagePicker from "../components/FormImagePicker";
 import Screen from "../components/Screen";
 import SubmitButton from "../components/SubmitButton";
-import CategoryPickerItem from "../components/CategoryPickerItem";
+import useLocation from "../hooks/useLocation";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().label("Title"),
   price: Yup.number().required().min(1).max(10000).label("Price"),
   category: Yup.object().required().nullable().label("Category"),
   description: Yup.string().label("Description"),
+  images: Yup.array().min(1, "Select at least 1 image"),
 });
 
 const items = [
@@ -74,15 +77,24 @@ const items = [
 ];
 
 function ListingEditScreen() {
+  const location = useLocation();
+
   return (
     <Screen style={styles.container}>
       <Formik
-        initialValues={{ title: "", price: "", category: "", description: "" }}
-        onSubmit={(values) => console.log(values)}
+        initialValues={{
+          title: "",
+          price: "",
+          category: null,
+          description: "",
+          images: [],
+        }}
+        onSubmit={(values) => console.log(location)}
         validationSchema={validationSchema}
       >
         {() => (
           <>
+            <FormImagePicker name="images" />
             <AppFormField name="title" placeholder="Title" />
             <AppFormField
               keyboardType="numeric"

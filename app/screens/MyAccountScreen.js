@@ -20,19 +20,17 @@ const menuItems = [
       name: "email",
       background: colors.secondary,
     },
+    targetScreen: "Messages",
   },
 ];
 
-function MyAccountScreen(props) {
+function MyAccountScreen({ navigation }) {
   return (
     <View style={styles.background}>
       <View style={styles.container}>
         <ListItem
           image={require("../assets/me.jpg")}
           title="Adam Koksal"
-          // ImageComponent={
-          //   <Icon backgroundColor={colors.primary} name="email" />
-          // }
           subTitle="a.koksal02@gmail.com"
         ></ListItem>
       </View>
@@ -50,16 +48,15 @@ function MyAccountScreen(props) {
                   name={item.icon.name}
                 />
               }
+              onPress={() => navigation.navigate(item.targetScreen)}
             />
           )}
         />
       </View>
-      <View style={styles.container}>
+      <View style={styles.logout}>
         <ListItem
           title="Log out"
-          IconComponent={
-            <Icon backgroundColor={colors.yellow} name="logout" />
-          }
+          IconComponent={<Icon backgroundColor={colors.yellow} name="logout" />}
         ></ListItem>
       </View>
     </View>
@@ -72,6 +69,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   container: {
+    backgroundColor: color.white,
+    marginTop: 10,
+    justifyContent: "center",
+  },
+  logout: {
     backgroundColor: color.white,
     marginTop: 60,
     justifyContent: "center",
