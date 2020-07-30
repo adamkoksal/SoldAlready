@@ -8,8 +8,8 @@ import AppText from "../components/AppText";
 import Card from "../components/Card";
 import Screen from "../components/Screen";
 import colors from "../config/colors";
-import routes from "../navigation/routes";
 import useApi from "../hooks/useApi";
+import routes from "../navigation/routes";
 
 function ListScreen({ navigation }) {
   const { data: listings, error, loading, request: loadListings } = useApi(
@@ -21,7 +21,6 @@ function ListScreen({ navigation }) {
   }, []);
 
   const [refreshing, setRefreshing] = useState(false);
-
   return (
     <Screen style={styles.container}>
       {error && (
@@ -42,6 +41,7 @@ function ListScreen({ navigation }) {
             title={item.title}
             subTitle={"$" + item.price}
             imageUrl={item.images[0].url}
+            thumbnailUrl={item.images[0].thumbnailUrl}
           />
         )}
       />

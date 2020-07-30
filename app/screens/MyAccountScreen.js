@@ -1,10 +1,11 @@
 import React from "react";
-import { StyleSheet, View, Text, FlatList } from "react-native";
-import color from "../config/colors";
-import ListItem from "../components/ListItem";
+import { FlatList, StyleSheet, View } from "react-native";
+
+import useAuth from "../auth/useAuth";
 import Icon from "../components/Icon";
-import colors from "../config/colors";
+import ListItem from "../components/ListItem";
 import ListItemSeparator from "../components/ListItemSeparator";
+import colors from "../config/colors";
 
 const menuItems = [
   {
@@ -25,13 +26,15 @@ const menuItems = [
 ];
 
 function MyAccountScreen({ navigation }) {
+  const { user, logOut } = useAuth();
+
   return (
     <View style={styles.background}>
       <View style={styles.container}>
         <ListItem
           image={require("../assets/me.jpg")}
-          title="Adam Koksal"
-          subTitle="a.koksal02@gmail.com"
+          title={user.name}
+          subTitle={user.email}
         ></ListItem>
       </View>
       <View style={styles.container}>
@@ -56,6 +59,7 @@ function MyAccountScreen({ navigation }) {
       <View style={styles.logout}>
         <ListItem
           title="Log out"
+          onPress={logOut}
           IconComponent={<Icon backgroundColor={colors.yellow} name="logout" />}
         ></ListItem>
       </View>
@@ -65,16 +69,16 @@ function MyAccountScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   background: {
-    backgroundColor: color.light,
+    backgroundColor: colors.light,
     flex: 1,
   },
   container: {
-    backgroundColor: color.white,
+    backgroundColor: colors.white,
     marginTop: 10,
     justifyContent: "center",
   },
   logout: {
-    backgroundColor: color.white,
+    backgroundColor: colors.white,
     marginTop: 60,
     justifyContent: "center",
   },
